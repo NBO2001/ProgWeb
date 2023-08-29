@@ -1,0 +1,51 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteinner{
+    margin: 20px;
+    padding: 15px;
+    min-height: 50vh;
+    min-width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    font-size: 1.3em;
+
+    background-color: rgb(235, 235, 235);
+}
+
+.line{
+    width: 600px;
+    margin: 5px;
+}
+
+.line label{
+    display: inline-block;
+    width: 200px;
+}
+
+.line button{
+
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.line input{
+    width: 200px;
+    height: 25px;
+}
