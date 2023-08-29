@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instituto de Computacão</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+
+        <div class="title">Um Gráfico de Barras</div>
+        <div class="conteinner-axis">
+            <label>Informe a altura das barras:</label>
+            <input type="text" name="axis-01" id="axis-01">
+            <input type="text" name="axis-02" id="axis-02">
+            <input type="text" name="axis-03" id="axis-03">
+            <input type="text" name="axis-04" id="axis-04">
+            <input type="text" name="axis-05" id="axis-05">
+        </div>
+
+        <div class="conteinner-tam">
+            <label>Informe a largura das barras:</label>
+            <input type="text" name="axis-tam" id="axis-tam">
+        </div>
+
+        <div class="conteinner-button">
+            <button onclick="drawingGraph()">Desenhar grafico</button>
+        </div>
+        
+        <div class="graph" id="graph"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
