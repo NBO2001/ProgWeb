@@ -1,0 +1,12 @@
+.main{
+    width: 100vw;
+    height: 100vh;
+}
+
+.bool{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: aqua;
+    border-radius: 25px;
+}
