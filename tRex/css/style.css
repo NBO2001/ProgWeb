@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.desert{
+    position: relative;
+    background-color: antiquewhite;
+    width: 100vw;
+    height: 50vh;
+    overflow: hidden;
+}
+
+.floor{
+    background-image: url("/imgs/sprite.png");
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-position-y: -77px;
+    height: 23px;
+}
+
+
+.dino {
+    background-image: url("/imgs/sprite.png");
+    position: absolute;
+    width: 66px;
+    left: 20px;
+    height: 70px;
+    z-index: 3;
+}
+
+
+.cloud {
+    background-image: url("/imgs/sprite.png");
+    background-position: -125px -2px;
+    position: absolute;
+    width: 70px;
+    height: 20px;
+    z-index: 2;
+}
+
+.cactus{
+    background-image: url("/imgs/sprite.png");
+    position: absolute;
+    background-position-y: -2px;
+    bottom: 0px;
+
+}
