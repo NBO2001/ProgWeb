@@ -1,0 +1,3 @@
+O operador == ele verifica se dois valores são iguais, exemplo, 21 == "21", vai ser verdadeiro, pois os
+valores são iguais mesmo que os tipos sejam diferentes. Já o operador ===, ele vai verificar se os valores são extritamentes iguais.
+exemplo, 21==="21", será falso, porque por mais que os valores sejam iguais, os tipos são diferentes. Já os valores 21 === 21, será verdadeiro.
