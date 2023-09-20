@@ -30,6 +30,7 @@
     width: 66px;
     left: 20px;
     height: 70px;
+    bottom: 0;
     z-index: 3;
 }
 

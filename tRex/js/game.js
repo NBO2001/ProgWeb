@@ -4,7 +4,7 @@ const CONFIG = {
     SCREEN_HEIGHT: 300,
     SCREEN_WIDTH: 1024,
     INIT_SPEED: 4,
-    MIN_CACTUS_DISTANCE: 500,
+    MIN_CACTUS_DISTANCE: 0,
     PROB_NUVEM: 1,
     PROB_CACTUS: 0.5,
     TOL_NUVENS: 4,
@@ -14,6 +14,7 @@ const CONFIG = {
 let lastCactusPosition = -CONFIG.MIN_CACTUS_DISTANCE;
 let clouds = [];
 let lastTimestamp = null;
+let lastCactus = null;
 
 // === JOGO ===
 class Game {
@@ -37,11 +38,19 @@ class Game {
             }
         }
 
-        const deltaCactus = parseInt(this.desert.desert_element.offsetWidth) - lastCactusPosition;
+        let initialCactusPosition = parseInt(CONFIG.SCREEN_WIDTH*0.20);
 
-        if (deltaCactus >= CONFIG.MIN_CACTUS_DISTANCE) {
+        if(!lastCactus){
+            lastCactus = new Cactus(this.desert.desert_element, initialCactusPosition);
+            lastCactus.ElementDino = this.dino;
+        }
+
+        let position_last = lastCactus.cactusPosition()
+
+        if (position_last >= CONFIG.MIN_CACTUS_DISTANCE) {
             if (Math.random() * 100 <= CONFIG.PROB_CACTUS) {
-                new Cactus(this.desert.desert_element);
+                lastCactus = new Cactus(this.desert.desert_element, initialCactusPosition);
+                lastCactus.ElementDino = this.dino;
             }
         }
 
@@ -118,6 +127,8 @@ class Dino {
     #speed = 100;
     #isJumping = false;
     #isLower = false;
+    #jump_speed = 2;
+    #jump_screen_update = 2;
 
     constructor(element_father) {
         this.#dino_element = this.#create_dino();
@@ -222,27 +233,26 @@ class Dino {
         this.#currentBackgroud = 'jump';
         this.#configureDinoAppearance(this.#dino_element, this.#currentBackgroud);
 
-        const jumpHeight = 150;
+        const jumpHeight = 120;
         let currentPosition = 0;
-        const riseSpeed = 6;
-        
+
         const rising = setInterval(() => {
-            currentPosition += riseSpeed;
+            currentPosition += this.#jump_speed;
             this.#dino_element.style.bottom = `${currentPosition}px`;
             
             if (currentPosition >= jumpHeight) {
                 clearInterval(rising);
                 this.#descend();
             }
-        }, 10);
+        }, this.#jump_screen_update);
     }
 
     #descend() {
-        const fallSpeed = 6;
-        let currentPosition = 100; 
+        
+        let currentPosition = 120; 
 
         const falling = setInterval(() => {
-            currentPosition -= fallSpeed;
+            currentPosition -= this.#jump_speed;
             this.#dino_element.style.bottom = `${currentPosition}px`;
             
             if (currentPosition <= 0) {
@@ -251,12 +261,19 @@ class Dino {
                 this.#isJumping = false;
                 this.runner();
             }
-        }, 10);
+        }, this.#jump_screen_update);
     }
 
     destroy() {
         document.removeEventListener('keydown', this.#handleKeyDown.bind(this));
         document.removeEventListener('keyup', this.#handleKeyUp.bind(this));
+    }
+
+    elementPositon(){
+
+        const rect = this.#dino_element.getBoundingClientRect();
+
+        return rect
     }
 }
 
@@ -317,20 +334,36 @@ class Cactus{
     #element_cactus;
     #intervalMove;
     #father_element;
+    #catcus_speed = 3;
+    #time_update = 9;
+    #element_dino = null;
+    
 
-    constructor(father_element){
+    constructor(father_element, intial_position){
 
-        this.#element_cactus = this.#createElement();
+        this.#element_cactus = this.#createElement(intial_position);
         this.#father_element = father_element;
         this.#father_element.appendChild(this.#element_cactus);
         this.#cacutsMove();
+
+        this.#element_cactus.style.border = "1px solid blue";
     
     }
 
-    #createElement(){
+    set ElementDino(element){
+        
+        this.#element_dino = element;
+
+    }
+    cactusPosition(){
+        let position = parseInt(this.#element_cactus.style.right);
+        return position;
+    }
+
+    #createElement(intial_position){
         const element = document.createElement('div');
         element.className = "cactus";
-        element.style.right = "-1200px";
+        element.style.right = `-${intial_position}px`;
         this.#randomCactus(element);
         return element;
     }
@@ -391,23 +424,50 @@ class Cactus{
         }
     }
 
+    #intersectRect(r1, r2) {
+        return !(r2.left > r1.right || 
+                 r2.right < r1.left || 
+                 r2.top > r1.bottom ||
+                 r2.bottom < r1.top);
+    }
+
     #cacutsMove(){
-        const speed = 4;   
+        
         this.#intervalMove = setInterval( () => {
             let now_position = parseInt(this.#element_cactus.style.right);
 
-            let next_positon = now_position+speed;
+            let next_positon = now_position+ this.#catcus_speed;
 
             this.#element_cactus.style.right = `${next_positon}px`;
 
             lastCactusPosition = next_positon; // atualizando a posição do cactus aqui
 
+
+            let dino = this.#element_dino.elementPositon();
+            let cactus = this.elementPositon();
+
+            if(this.#intersectRect(dino, cactus)){
+
+                console.log("bateu..")
+                console.log(dino)
+                console.log(cactus)
+                
+            }
+            
             if(next_positon > this.#father_element.offsetWidth){
                 clearInterval(this.#intervalMove);
                 this.#element_cactus.remove();
             }
-        }, 50);
+        }, this.#time_update);
 
+    }
+
+    elementPositon(){
+        
+
+        const rect = this.#element_cactus.getBoundingClientRect();
+
+        return rect
     }
 
 }
@@ -423,7 +483,11 @@ document.addEventListener("cloudOutOfScreen", (e) => {
 // === INICIALIZAÇÃO ===
 const game = new Game();
 
-// Suponha que você queira aumentar a velocidade do jogo a cada 30 segundos:
+
 setInterval(() => {
     game.increaseSpeed();
 }, 30000);
+
+// Apenas para debug visual
+document.querySelector('.dino').style.border = "1px solid red";
+
