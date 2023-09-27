@@ -4,13 +4,24 @@
     box-sizing: border-box;
 }
 
-
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
 .desert{
     position: relative;
-    background-color: antiquewhite;
-    width: 100vw;
-    height: 50vh;
     overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.black_element{
+    background-color: rgb(0, 0, 0);
+    color: rgb(253, 254, 255);
 }
 
 .floor{
@@ -21,6 +32,7 @@
     bottom: 0;
     background-position-y: -77px;
     height: 23px;
+    
 }
 
 
@@ -32,6 +44,7 @@
     height: 70px;
     bottom: 0;
     z-index: 3;
+    
 }
 
 
@@ -49,5 +62,57 @@
     position: absolute;
     background-position-y: -2px;
     bottom: 0px;
+    z-index: 3;
+}
 
+.game-over{
+    background-image: url("/imgs/sprite.png");
+    position: absolute;
+    background-position: -972px -23px;
+    width: 285px;
+    height: 16px;
+    top: 40%;
+    left: 30%;
+    z-index: 4;
+}
+
+.cicle-button{
+    background-image: url("/imgs/sprite.png");
+    position: absolute;
+    background-position: -5px -2px;
+    width: 54px;
+    height: 54px;
+    top: 50%;
+    left: 37%;
+    z-index: 4;
+}
+
+.number{
+    background-image: url("/imgs/sprite.png");
+    background-position: -971px -2px;
+    width: 13px;
+    height: 15px;
+}
+
+.numbers{
+    display: flex;
+}
+
+.score{
+    display: flex;
+    position: absolute;
+    width: 200px;
+    justify-content: space-between;
+    top: 15px;
+    right: 15px;
+    z-index: 4;
+}
+
+.pterosaur{
+    background-image: url("/imgs/sprite.png");
+    background-position: -195px -12px;
+    position: absolute;
+    width: 69px;
+    height: 51px;
+    z-index: 3;
 }

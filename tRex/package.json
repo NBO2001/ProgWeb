@@ -1,0 +1,12 @@
+{
+  "name": "dinogame",
+  "version": "1.0.0",
+  "description": "Joguinho para a disciplina de programação web",
+  "main": "./js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
