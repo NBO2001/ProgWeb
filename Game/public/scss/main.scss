@@ -1,0 +1,12 @@
+$fa-font-path: "./../../node_modules/@fortawesome/fontawesome-free/webfonts";
+
+@import "./../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "./../../node_modules/@fortawesome/fontawesome-free/scss/solid";
+@import "./../../node_modules/@fortawesome/fontawesome-free/scss/brands";
+
+@import "variables";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "bootswatch";
+
+@import "./../../node_modules/boot  strap-icons/font/bootstrap-icons.min.css";
+@import "./custom.scss";

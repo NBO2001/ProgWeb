@@ -3,9 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
     <title>Joguinho Corrida Infinita</title>
 </head>
 <body>
+    <div class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark">
+      <div class="container">
+        <a href="../" class="navbar-brand">Dino Infinity</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+          <ul class="navbar-nav">
+
+            <li class="nav-item">
+              <a class="nav-link" href="#/">Help</a>
+            </li>
+          
+
+          </ul>
+
+          <ul class="navbar-nav ms-md-auto">
+            
+            
+            <li class="nav-item dropdown" data-bs-theme="light">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="theme-menu" aria-expanded="false" data-bs-toggle="dropdown" data-bs-display="static" aria-label="Toggle theme">
+                <i class="bi bi-circle-half"></i>
+                <span class="d-lg-none ms-2">Toggle theme</span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                    <i class="bi bi-sun-fill"></i><span class="ms-2">Light</span>
+                  </button>
+                </li>
+                <li>
+                  <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="true">
+                    <i class="bi bi-moon-stars-fill"></i><span class="ms-2">Dark</span>
+                  </button>
+                </li>
+             
+              </ul>
+
+            </li>
+          
+          </ul>
+
+        </div>
+      </div>
+    </div>
     {{{body}}}
+    <script src="/js/bootstrap.bundle.js"></script>
+     <script src="/js/prism.js" data-manual></script>
+    <script src="/js/custom.js"></script>
 </body>
 </html>
