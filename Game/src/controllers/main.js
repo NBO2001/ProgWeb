@@ -6,4 +6,8 @@ const about = (req, res) => {
     res.render("about");
 };
 
-module.exports = {home, about};
+const player = (req, res) => {
+    res.render("game");
+}
+
+module.exports = {home, about, player};
