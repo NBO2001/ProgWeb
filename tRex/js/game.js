@@ -11,11 +11,14 @@ class Dino{
     #animationId;
     #goingUp = true;
     #gamePause = false;
+    #bounderBoxs = [];
    
     constructor(){
         this.#element = this.#create_element();
         if(DEBUG){
-            this.#element.style.border = "1px solid red";
+            this.#bounderBoxs[0].style.border = "1px solid red";
+            this.#bounderBoxs[1].style.border = "1px solid black";
+            this.#bounderBoxs[2].style.border = "1px solid red";
         }
     }
 
@@ -28,8 +31,25 @@ class Dino{
         const element = document.createElement('div');
         element.className = "dino";
         element.style.bottom = '0';
+        this.#createBonderBoxs(element);
         this.#configureDinoAppearance(element, "default");
         return element;
+    }
+
+    #createBonderBoxs(element){
+        const element_h = document.createElement('div');
+        const element_b = document.createElement('div');
+        const element_f = document.createElement('div');
+        element_h.className = "dino_h";
+        element_b.className = "dino_b";
+        element_f.className = "dino_f";
+
+        element.appendChild(element_h);
+        element.appendChild(element_b);
+        element.appendChild(element_f);
+
+        this.#bounderBoxs = [element_h,element_b,element_f]
+
     }
 
     #configureDinoAppearance(element, type_backgroud) {
@@ -38,10 +58,36 @@ class Dino{
             element.style.height = "70px";
             element.style.width = "66px";
             element.style.backgroundPositionY = "0px";
+            element.style.flexDirection= "column";
+
+            this.#bounderBoxs[0].style.width = "37px";
+            this.#bounderBoxs[0].style.height = "28px";
+            this.#bounderBoxs[0].style.margin = "0px";
+            this.#bounderBoxs[0].style.marginLeft = "20px";
+
+            this.#bounderBoxs[1].style.width = "51px";
+            this.#bounderBoxs[1].style.height = "33px";
+            this.#bounderBoxs[1].style.marginRight = "15px";
+
+            this.#bounderBoxs[2].style.width = "30px";
+            this.#bounderBoxs[2].style.height = "15px";
+
         }else{
             element.style.height = "47px";
             element.style.width = "89px";
+            element.style.flexDirection= "row-reverse";
             element.style.backgroundPositionY = "-25px";
+
+            this.#bounderBoxs[0].style.width = "35px";
+            this.#bounderBoxs[0].style.margin = "0px";
+            this.#bounderBoxs[0].style.marginRight = "4px";
+            this.#bounderBoxs[0].style.marginBottom = "5px";
+
+            this.#bounderBoxs[1].style.width = "21px";
+            this.#bounderBoxs[1].style.margin = "0px";
+
+            this.#bounderBoxs[2].style.width = "35px";
+            this.#bounderBoxs[2].style.height = "45px";
         }
 
         switch(type_backgroud) {
@@ -189,7 +235,10 @@ class Dino{
     
         const rect = this.#element.getBoundingClientRect();
 
-        return rect
+        const h = this.#bounderBoxs[0].getBoundingClientRect();
+        const b = this.#bounderBoxs[1].getBoundingClientRect();
+        const f = this.#bounderBoxs[2].getBoundingClientRect();
+        return {rect, h,b,f}
     }
 
     destroy(){
@@ -487,7 +536,13 @@ class Pterosaur{
             let r1 = this.#dino.dinoPosition();
             let r2 = this.elementPosition();
             
-            if(r1.height !== 0 &&  this.#intersectRect(r1,r2)){
+            if(r1.h.height !== 0 && this.#intersectRect(r1.h,r2)){
+                let gameOverEvent = new Event('gameOver');
+                document.dispatchEvent(gameOverEvent);
+            }else if(r1.b.height !== 0 && this.#intersectRect(r1.b,r2)){
+                let gameOverEvent = new Event('gameOver');
+                document.dispatchEvent(gameOverEvent);
+            } else if(r1.f.height !== 0 && this.#intersectRect(r1.f,r2)){
                 let gameOverEvent = new Event('gameOver');
                 document.dispatchEvent(gameOverEvent);
             }
@@ -791,9 +846,16 @@ class Cactus{
             this.#animationId = requestAnimationFrame(move);
 
             let r1 = this.#dinoElement.dinoPosition();
+            
             let r2 = this.elementPosition();
 
-            if(r1.height !== 0 && this.#intersectRect(r1,r2)){
+            if(r1.h.height !== 0 && this.#intersectRect(r1.h,r2)){
+                let gameOverEvent = new Event('gameOver');
+                document.dispatchEvent(gameOverEvent);
+            }else if(r1.b.height !== 0 && this.#intersectRect(r1.b,r2)){
+                let gameOverEvent = new Event('gameOver');
+                document.dispatchEvent(gameOverEvent);
+            } else if(r1.f.height !== 0 && this.#intersectRect(r1.f,r2)){
                 let gameOverEvent = new Event('gameOver');
                 document.dispatchEvent(gameOverEvent);
             }

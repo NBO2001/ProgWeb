@@ -27,6 +27,7 @@ app.use("/css", [
 
 
 app.use("/imgs", express.static(`${__dirname}/../public/imgs`));
+app.use("/webfonts", express.static(`${__dirname}/../node_modules/@fortawesome/fontawesome-free/webfonts`))
 app.use("/js", [
     express.static(`${__dirname}/../public/js`),
     express.static(`${__dirname}/../node_modules/bootstrap/dist/js/`),

@@ -39,6 +39,10 @@ body{
 .dino {
     background-image: url("../imgs/sprite.png");
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     width: 66px;
     left: 20px;
     height: 70px;
@@ -47,6 +51,25 @@ body{
     
 }
 
+.dino_h{
+    width: 35px;
+    height: 28px;
+    margin-right:4px;
+    margin-bottom: 5px;
+}
+
+
+.dino_b{
+    width: 57px;
+    height: 33px;
+    margin-right: 5px;
+}
+
+
+.dino_f{
+    width: 30px;
+    height: 15px;
+}
 
 .cloud {
     background-image: url("../imgs/sprite.png");
