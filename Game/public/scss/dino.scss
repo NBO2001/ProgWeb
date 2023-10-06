@@ -1,0 +1,130 @@
+
+
+.desert{
+    position: relative;
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.black_element{
+    background-color: rgb(0, 0, 0);
+    color: rgb(253, 254, 255);
+}
+
+.floor{
+    background-image: url("../imgs/sprite.png");
+    height: 50px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-position-y: -77px;
+    height: 23px;
+    
+}
+
+
+.dino {
+    background-image: url("../imgs/sprite.png");
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 66px;
+    left: 20px;
+    height: 70px;
+    bottom: 0;
+    z-index: 3;
+    
+}
+
+.dino_h{
+    width: 35px;
+    height: 28px;
+    margin-right:4px;
+    margin-bottom: 5px;
+}
+
+
+.dino_b{
+    width: 57px;
+    height: 33px;
+    margin-right: 5px;
+}
+
+
+.dino_f{
+    width: 30px;
+    height: 15px;
+}
+
+.cloud {
+    background-image: url("../imgs/sprite.png");
+    background-position: -125px -2px;
+    position: absolute;
+    width: 70px;
+    height: 20px;
+    z-index: 2;
+}
+
+.cactus{
+    background-image: url("../imgs/sprite.png");
+    position: absolute;
+    background-position-y: -2px;
+    bottom: 0px;
+    z-index: 3;
+}
+
+.game-over{
+    background-image: url("../imgs/sprite.png");
+    position: absolute;
+    background-position: -972px -23px;
+    width: 285px;
+    height: 16px;
+    top: 40%;
+    left: 30%;
+    z-index: 4;
+}
+
+.cicle-button{
+    background-image: url("../imgs/sprite.png");
+    position: absolute;
+    background-position: -5px -2px;
+    width: 54px;
+    height: 54px;
+    top: 50%;
+    left: 37%;
+    z-index: 4;
+}
+
+.number{
+    background-image: url("../imgs/sprite.png");
+    background-position: -971px -2px;
+    width: 13px;
+    height: 15px;
+}
+
+.numbers{
+    display: flex;
+}
+
+.score{
+    display: flex;
+    position: absolute;
+    width: 200px;
+    justify-content: space-between;
+    top: 15px;
+    right: 15px;
+    z-index: 4;
+}
+
+.pterosaur{
+    background-image: url("../imgs/sprite.png");
+    background-position: -195px -12px;
+    position: absolute;
+    width: 69px;
+    height: 51px;
+    z-index: 3;
+}
