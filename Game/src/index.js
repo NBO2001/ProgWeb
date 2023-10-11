@@ -4,13 +4,22 @@ const handlebars = require('express-handlebars');
 const sass = require('node-sass-middleware');
 const router = require("./router/router.js");
 const path = require('path');
+const multer = require('multer');
+require('dotenv').config();
 
 const app = express();
-const PORT = 3000;
 
 app.engine("handlebars", handlebars.engine());
 app.set("view engine", "handlebars");
 app.set("views", `${__dirname}/views`);
+
+// Configuração do Multer
+const upload = multer();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(upload.none());
+
+app.use(express.json());
 
 
 app.use(sass({
@@ -36,6 +45,6 @@ app.use("/js", [
 app.use(logger("short"));
 app.use(router);
 
-app.listen(PORT, () => {
-    console.log(`Express app iniciada na porta ${PORT}.`);
+app.listen(process.env.PORT, () => {
+    console.log(`Express app iniciada na porta ${process.env.PORT}.`);
 })

@@ -1,5 +1,6 @@
 $fa-font-path: "./../webfonts";
 
+@import "./dino.scss";
 @import "./../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
 @import "./../../node_modules/@fortawesome/fontawesome-free/scss/solid";
 @import "./../../node_modules/@fortawesome/fontawesome-free/scss/brands";
@@ -10,4 +11,3 @@ $fa-font-path: "./../webfonts";
 
 @import "./../../node_modules/boot  strap-icons/font/bootstrap-icons.min.css";
 @import "./custom.scss";
-@import "./dino.scss";

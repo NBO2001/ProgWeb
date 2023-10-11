@@ -1,0 +1,33 @@
+<form id="formulario" action="/curso/create" method="post" >
+
+    <fieldset>
+        <legend>Cadastrar Curso</legend>
+        <fieldset class="form-group">
+            <label for="sigla" class="form-label mt-4">Sigla</label>
+            <input type="text" name="sigla" class="form-control" id="sigla" aria-describedby="sigla do curso" placeholder="Enter sigla">
+            <label for="nome" class="form-label mt-4">Nome</label>
+            <input type="text" name="nome" class="form-control" id="nome" aria-describedby="nome do curso" placeholder="Enter nome">
+            <label for="descricao" class="form-label mt-4">Descrição do Curso</label>
+            <textarea class="form-control" id="descricao" rows="3"></textarea>
+        </fieldset>
+        <div style="margin-top: 20px;">
+            <button  id="btn-send" type="submit" value="Enviar" class="btn btn-primary btn-lg btn-block ">Cadastrar</button>
+        </div>
+    
+    </fieldset>
+     
+</form>
+
+
+
+<script>
+    const btn = document.getElementById("btn-send");
+    const form = document.getElementById("formulario");
+
+    btn.addEventListener('click', (e) => {
+        
+        e.preventDefault();
+        
+        form.dispatchEvent(new Event('submit'));
+    });
+</script>

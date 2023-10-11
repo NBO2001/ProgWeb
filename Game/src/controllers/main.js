@@ -10,4 +10,12 @@ const player = (req, res) => {
     res.render("game");
 }
 
-module.exports = {home, about, player};
+const isAuthenticated = (req, res, next) => {
+    
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect("/login"); 
+};
+
+module.exports = {home, about, player, isAuthenticated};
