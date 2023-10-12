@@ -14,8 +14,26 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    nome: DataTypes.STRING,
-    email: DataTypes.STRING,
+    nome: {
+      type:DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: {
+          args: [3, 150],
+          msg: "O nome tem que ter entre 3 a 150 caracteres."
+        }
+      }
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: {
+          msg: "O e-mail deve ser um endereço de e-mail válido.",
+        },
+      }
+    },
     senha: DataTypes.STRING,
     cursoId: DataTypes.INTEGER
   }, {

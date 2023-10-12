@@ -631,7 +631,7 @@ class Desert{
         let element = document.createElement("div");
 
         element.className = this.#class_scenario[0];
-        element.style.width = `${width}px`;
+        element.style.width = `100%`;
         element.style.height = `${height}px`;
 
         return element;
@@ -1070,7 +1070,7 @@ class Cactus{
     }
     
     document.addEventListener('keydown', (e) => {
-        
+        e.preventDefault();  
         if (e.key === "p") {
             pauseOrResumeGame();
         }else if( !gameIsRunning && e.code === "Space"){

@@ -10,14 +10,45 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.Area);
     }
   }
   Curso.init({
-    sigla: DataTypes.STRING,
-    nome: DataTypes.STRING,
-    descricao: DataTypes.TEXT,
-    areaId: DataTypes.INTEGER
+    sigla: {
+      type: DataTypes.STRING,
+      validate: {
+        len: {
+          args: [3, 6],
+          msg: "A sigla tem que ter entre 3 a 6 caracteres."
+        }
+      }
+    },
+    nome:{
+      type: DataTypes.STRING,
+      validate: {
+        len: {
+          args: [3, 50],
+          msg: "O nome tem que ter entre 3 a 50 caracteres."
+        }
+      }
+    },
+    descricao: {
+      type: DataTypes.TEXT,
+      validate: {
+        len: {
+          args: [5, 150],
+          msg: "A descrição tem que ter entre 5 a 150 caracteres."
+        }
+      }
+    },
+    areaId: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isInt: {
+          msg: "Precisa ser um número inteiro"
+        }
+      }
+    }
   }, {
     sequelize,
     modelName: 'Curso',

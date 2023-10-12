@@ -1,9 +1,16 @@
+const bcrypt = require('bcryptjs');
+
 const home = (req, res) => {
     res.render("home");
 };
 
 const about = (req, res) => {
-    res.render("about");
+    if(req.session.uid){
+        res.render("about");
+    }else{
+        res.render("about", {layout: "withou_login", showLink: true});
+        
+    }
 };
 
 const player = (req, res) => {

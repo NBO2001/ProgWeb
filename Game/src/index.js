@@ -5,11 +5,29 @@ const sass = require('node-sass-middleware');
 const router = require("./router/router.js");
 const path = require('path');
 const multer = require('multer');
+const cookieParser = require('cookie-parser');
+const csurf = require('csurf');
+const session = require('express-session');
+const uuid = require('uuid');
+
 require('dotenv').config();
 
 const app = express();
 
-app.engine("handlebars", handlebars.engine());
+app.use(cookieParser());
+
+app.use(session({
+    genid: (req) => {
+    return uuid.v4() // usamos UUIDs para gerar os SESSID
+    },
+    secret: 'Hi9Cf#mK98',
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.engine("handlebars", handlebars.engine({
+    helpers: require(`${__dirname}/views/helpers/helpers.js`)
+}));
 app.set("view engine", "handlebars");
 app.set("views", `${__dirname}/views`);
 
@@ -17,6 +35,8 @@ app.set("views", `${__dirname}/views`);
 const upload = multer();
 
 app.use(express.urlencoded({ extended: true }));
+
+app.use(csurf({ cookie: true }));
 app.use(upload.none());
 
 app.use(express.json());

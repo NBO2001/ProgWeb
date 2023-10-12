@@ -1,1 +1,53 @@
-index
+<div class="jumbotron">
+    
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="display-3">Cursos</h1>
+        <div>
+            <a class="btn btn-primary btn-lg" href="/"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            data-bs-original-title="Voltar"
+            role="button">
+            <i class="fa-solid fa-circle-left"></i></a>
+            <a class="btn btn-primary btn-lg" 
+        href="/curso/create" role="button"
+        data-bs-toggle="tooltip"
+        data-bs-placement="bottom"
+        data-bs-original-title="Adicionar Novo">
+        <i class="fa-solid fa-circle-plus"></i></a>
+        </div>
+    </div>
+    <hr class="my-4">
+
+</div>
+
+<div class="row">
+    {{#if cursos}}
+    {{#each cursos}}
+    <div class="col-lg-4">
+    <div class="card mb-3">
+        <h3 class="card-header">
+            <div>{{nome}}</div>
+            <div>
+                <a href="/curso/update/{{id}}"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a><i class="fa-solid fa-trash"></i></a>
+            </div>
+        </h3>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Sigla: </strong>{{sigla}}</li>
+            <li class="list-group-item"><strong>Nome: </strong>{{nome}}</li>
+            <li class="list-group-item"><strong>Descrição: </strong>{{descricao}}</li>
+            <li class="list-group-item"><strong>Área: </strong>{{Area.nome}}</li>
+        </ul>
+        </div>
+    </div>
+    {{/each}}
+    {{else}}
+        <div class="alert alert-dismissible alert-warning">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <h4 class="alert-heading">Alerta!</h4>
+            <p class="mb-0">Nenhum resultado retornado.</p>
+        </div>
+    {{/if}}
+</div>

@@ -1,10 +1,17 @@
-<form id="formulario" action="/curso/create" method="post">
+{{#if error}}
+<div class="alert alert-dismissible alert-danger">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <h4 class="alert-heading">Erro!</h4>
+    <p class="mb-0">{{msg}}</p>
+</div>
+{{else}}
+<form id="formulario" action="/curso/update/{{id}}" method="post">
 
     <fieldset>
         <div class="jumbotron">
         
             <div class="d-flex justify-content-between align-items-center">
-                <h1 class="display-3">Cadastrar Curso</h1>
+                <h1 class="display-3">Atualizar Curso</h1>
                 <a class="btn btn-primary btn-lg" href="/curso"
                 data-bs-toggle="tooltip"
                 data-bs-placement="bottom"
@@ -20,9 +27,9 @@
                 <label for="sigla" class="form-label mt-4">Sigla</label>
 
                 {{#if (showError errors 'sigla')}}
-                    <input type="text" name="sigla" class="form-control is-invalid" id="sigla" aria-describedby="sigla do curso" value="{{curso.sigla}}" placeholder="Enter sigla" required>
+                    <input type="text" name="sigla" class="form-control is-invalid" id="sigla" aria-describedby="sigla do curso" value="{{curso.sigla}}" placeholder="Enter sigla">
                 {{else}}
-                    <input type="text" name="sigla" class="form-control" id="sigla" aria-describedby="sigla do curso" value="{{curso.sigla}}" placeholder="Enter sigla" required>
+                    <input type="text" name="sigla" class="form-control" id="sigla" aria-describedby="sigla do curso" value="{{curso.sigla}}" placeholder="Enter sigla">
                 {{/if}}
 
                 <div class="invalid-feedback">{{showError errors 'sigla'}}</div>
@@ -40,19 +47,17 @@
             <div class="form-group">
                 <label for="descricao" class="form-label mt-4">Descrição do Curso</label>
                 {{#if (showError errors 'descricao')}}
-                    <textarea class="form-control is-invalid" name="descricao" id="descricao" value="{{curso.descricao}}" rows="3"></textarea>
+                    <textarea class="form-control is-invalid" name="descricao" id="descricao" rows="3">{{curso.descricao}}</textarea>
                 {{else}}
-                    <textarea class="form-control" name="descricao" id="descricao" value="{{curso.descricao}}" rows="3"></textarea>
+                    <textarea class="form-control" name="descricao" id="descricao" rows="3">{{curso.descricao}}</textarea>
                 {{/if}}
                  <div class="invalid-feedback">{{showError errors 'descricao'}}</div>
             </div>
         </fieldset>
-        
 
         <fieldset class="form-group">
             <legend class="mt-4">Áreas do Conhecimento</legend>
             <div class="form-check">
-                
                 <input class="form-check-input" type="radio" name="areaId" id="areaId1" value="1" {{#if (eq curso.areaId 1)}}checked{{/if}}>
                 <label class="form-check-label" for="areaId1">
                 Ciências Exatas - Computação, Engenharias, Matemática, etc.
@@ -73,10 +78,10 @@
         </fieldset>
         <input type="hidden" name="_csrf" value="{{csrf}}">
         <div style="margin-top: 20px;">
-            <button  id="btn-send" type="submit" value="Enviar" class="btn btn-primary btn-lg btn-block ">Cadastrar</button>
+            <button  id="btn-send" type="submit" value="Enviar" class="btn btn-primary btn-lg btn-block ">Atualizar</button>
         </div>
     
     </fieldset>
 
 </form>
-
+{{/if}}
