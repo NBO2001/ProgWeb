@@ -1,59 +1,47 @@
+<!-- Código desenvolvido corretamente -->
+<!-- Nota: 2.0 -->
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Instituto de Computação</title>
 
     <style>
-        .click-here{
-            background-color: rgb(180, 176, 176);
-            padding: 20px;
-            width: 100px;
-            margin-bottom: 10px;
-            
-        }
-       
-        
+      .click-here {
+        background-color: rgb(180, 176, 176);
+        padding: 20px;
+        width: 100px;
+        margin-bottom: 10px;
+      }
     </style>
-</head>
-<body>
-    
+  </head>
+  <body>
     <div class="conteinner">
-
-        <div class="title">
-            <h1>Somando dois números</h1>
-        </div>
-        <div class="click-here" id="click-here" >
-            Iniciar soma
-        </div>
-        <div class="results" id="results">
-            O resultado vem aqui...
-        </div>
+      <div class="title">
+        <h1>Somando dois números</h1>
+      </div>
+      <div class="click-here" id="click-here">Iniciar soma</div>
+      <div class="results" id="results">O resultado vem aqui...</div>
     </div>
 
     <script>
+      const sumNumbers = () => {
+        const divResult = document.getElementById("results");
 
-        const sumNumbers = () => {
+        let a = parseInt(prompt("Digite um numero: "));
+        let b = parseInt(prompt("Digite um numero: "));
+        let result = a + b;
 
-            const divResult = document.getElementById("results");
+        divResult.innerHTML = `A soma entre ${a} e ${b} é igual a <strong>${result}</strong>!`;
 
-            let a = parseInt(prompt("Digite um numero: "));
-            let b = parseInt(prompt("Digite um numero: "));
-            let result = a+b;
+        return result;
+      };
 
-
-
-            divResult.innerHTML = `A soma entre ${a} e ${b} é igual a <strong>${result}</strong>!`;
-
-            return result;
-
-        }  
-
-        const clickHere = document.getElementById("click-here");
-        clickHere.addEventListener("click", e =>  sumNumbers());
-
+      const clickHere = document.getElementById("click-here");
+      clickHere.addEventListener("click", (e) => sumNumbers());
     </script>
-</body>
+  </body>
 </html>
