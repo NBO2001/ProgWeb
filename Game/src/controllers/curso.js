@@ -107,5 +107,17 @@ async function update (req, res) {
     }
 
 };
-async function remove (req, res) {};
+async function remove (req, res) {
+
+    const cursoId = req.params.id;
+
+    const status = await Curso.destroy({
+        where: {
+            id: { [models.Sequelize.Op.eq]: cursoId }
+        }
+    });
+
+    res.redirect("/curso");
+
+};
 module.exports = { index, read, create, update, remove }

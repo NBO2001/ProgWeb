@@ -24,6 +24,6 @@ router.get('/curso/create' ,ensureAuthenticated, cursoController.create);
 router.post('/curso/create' ,ensureAuthenticated, cursoController.create);
 router.get('/curso/update/:id' ,ensureAuthenticated, cursoController.update);
 router.post('/curso/update/:id' ,ensureAuthenticated, cursoController.update);
-router.post('/curso/remove/:id' ,ensureAuthenticated, cursoController.remove);
+router.get('/curso/remove/:id' ,ensureAuthenticated, cursoController.remove);
 
 module.exports = router;
